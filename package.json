@@ -38,7 +38,7 @@
   },
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --mode development",
-    "build": "./node_modules/.bin/webpack --mode production && npm run copy && npm run third",
+    "build": "./node_modules/.bin/webpack --mode production",
     "dll": "./node_modules/.bin/webpack --mode production --config webpack.dll.config.js"
   },
   "dependencies": {
