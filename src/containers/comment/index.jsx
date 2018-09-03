@@ -2,7 +2,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import styles from './index.less';
-import '../../util/calendar';
+import Calendar from '../../util/calendar';
 
 class List extends React.Component {
   render(){
