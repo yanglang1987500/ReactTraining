@@ -1,0 +1,17 @@
+.icon {
+  font-size: 24px;
+  line-height: 1.5;
+  color: #3071d4;
+  &:hover {
+    filter: brightness(120%);
+  }
+  &:global(.normal) {
+    font-size: 24px;
+  }
+  &:global(.small) {
+    font-size: 18px;
+  }
+  &:global(.large) {
+    font-size: 30px;
+  }
+}

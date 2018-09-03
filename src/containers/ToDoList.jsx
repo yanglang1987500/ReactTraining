@@ -4,7 +4,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Button from '../components/button';
 import Editor from '../components/editor';
-import List from './list';
+import List from './todo';
+import Loading from '../components/loading';
 import styles from './ToDoList.less';
 
 class ToDoList extends React.Component {
@@ -15,6 +16,10 @@ class ToDoList extends React.Component {
   state = {
     text: '',
     warning: '',
+  }
+  componentDidMount() {
+    const { rootStore: { ToDoListState } } = this.props;
+    ToDoListState.fetchData();
   }
   submit() {
     if (this.state.text.trim() === '') {
@@ -31,15 +36,17 @@ class ToDoList extends React.Component {
     const { rootStore: { ToDoListState } } = this.props;
     const data = ToDoListState.todoList;
     return <div className={styles.container}>
-      <h2>任务便签</h2>
-      {this.state.warning && <p style={{color:'red'}}>{this.state.warning}</p>}
-      <List data={data}>
-        {
-          data.map(i => <List.ListItem data={i} onDelete={() => { ToDoListState.removeItem(i.id); }} onCheck={(flag) => { ToDoListState.changeItem(i, flag); }} />)
-        }
-      </List>
-      <Editor text={this.state.text} label="任务" placeholder="安排新的任务吧。。。" onEnter={this.submit} onChange={(val) => { this.setState({ text: val }) }} />
-      <Button style={{ float: 'right' }} onClick={this.submit}>保存任务</Button>
+      <Loading  show={ToDoListState.status.loading}>
+        <h2>任务便签</h2>
+        {this.state.warning && <p style={{color:'red'}}>{this.state.warning}</p>}
+        <List data={data}>
+          {
+            data.map(i => <List.ListItem data={i} onDelete={() => { ToDoListState.removeItem(i.id); }} onCheck={(flag) => { ToDoListState.changeItem(i, flag); }} />)
+          }
+        </List>
+        <Editor text={this.state.text} label="任务" placeholder="安排新的任务吧。。。" onEnter={this.submit} onChange={(val) => { this.setState({ text: val }) }} />
+        <Button style={{ float: 'right' }} loading={ToDoListState.status.saving} onClick={this.submit}>保存任务</Button>
+      </Loading>
     </div>
   }
 }

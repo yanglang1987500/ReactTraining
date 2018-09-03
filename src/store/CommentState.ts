@@ -1,7 +1,7 @@
 import { observable, computed, action, decorate, autorun, reaction, when, configure, toJS, set, runInAction } from 'mobx';
 import Api from '../util/api';
 
-class ToDoListState {
+class CommentState {
 
   transparent: any
   id = 0;
@@ -14,7 +14,7 @@ class ToDoListState {
   }
 
   @observable
-  todoList: Array<any> = [];
+  commentList: Array<any> = [];
 
   @observable
   status = {
@@ -26,10 +26,10 @@ class ToDoListState {
   fetchData() {
     this.status.loading = true;
     return new Promise((resolve, reject) => {
-      this.axios.get(Api.todo.list).then(res => {
+      this.axios.get(Api.comment.list).then(res => {
         runInAction('fetchThenSetData', () => {
           this.status.loading = false;
-          this.todoList = res.data;
+          this.commentList = res.data;
           resolve(res.data);
         });
       });
@@ -37,9 +37,9 @@ class ToDoListState {
   }
 
   @action
-  addItem (name) {
+  addItem (author, content) {
     this.status.saving = true;
-    this.axios.post(Api.todo.add, { name }).then(res => {
+    this.axios.post(Api.comment.add, { author, content }).then(res => {
       runInAction('fetchThenSetData', () => {
         this.status.saving = false;
         this.fetchData();
@@ -50,7 +50,7 @@ class ToDoListState {
   @action
   removeItem(id){
     this.status.loading = true;
-    this.axios.post(Api.todo.remove + id).then(res => {
+    this.axios.post(Api.comment.remove + id).then(res => {
       runInAction('fetchThenSetData', () => {
         this.status.loading = false;
         this.fetchData();
@@ -58,16 +58,6 @@ class ToDoListState {
     });
   }
 
-  @action
-  changeItem(item, flag) {
-    this.status.loading = true;
-    this.axios.post(Api.todo.change + item.id).then(res => {
-      runInAction('fetchThenSetData', () => {
-        this.status.loading = false;
-        this.fetchData();
-      });
-    });
-  }
 }
 
-export default ToDoListState;
+export default CommentState;
