@@ -9,8 +9,8 @@ return <button className={classnames(styles.button,
         icon && styles.icon)}
       style={style}
       onClick={onClick}>
-        {loading&&<i className={styles.loading} />
-        }{icon}
+        {loading&&<i className={styles.loading} />}
+        {icon}
         <span>{children}</span>
     </button>;
 };
