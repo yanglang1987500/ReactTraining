@@ -3,14 +3,14 @@ import Api from '../util/api';
 
 class CommentState {
 
-  transparent: any
+  rootStore: any
   id = 0;
-  constructor(transparent) {
-    this.transparent = transparent;
+  constructor(rootStore) {
+    this.rootStore = rootStore;
   }
 
   get axios() {
-    return this.transparent.rootStore.axiosInstance;
+    return this.rootStore.axios;
   }
 
   @observable

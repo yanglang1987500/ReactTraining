@@ -51,7 +51,12 @@ class Comment extends React.Component {
         </section>
         <List data={data}>
           {
-            data.map(i => <List.ListItem data={i} onDelete={() => { CommentState.removeItem(i.id); }} onCheck={(flag) => { CommentState.changeItem(i, flag); }} />)
+            data.map(i => 
+              <List.ListItem
+                data={i}
+                onDelete={() => { CommentState.removeItem(i.id); }}
+                onCheck={(flag) => { CommentState.changeItem(i, flag); }}
+              />)
           }
         </List>
         {this.state.warning && <p style={{color:'red'}}>{this.state.warning}</p>}

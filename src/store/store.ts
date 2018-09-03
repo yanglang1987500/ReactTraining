@@ -5,11 +5,11 @@ import CommentState from './CommentState';
 configure({ enforceActions: true });
 
 class RootStore {
-  axiosInstance: any;
+  axios: any;
   CommentState: any;
   constructor() {
-    this.axiosInstance = Api.axios;
-    this.CommentState = new CommentState({ rootStore: this });
+    this.axios = Api.axios;
+    this.CommentState = new CommentState(this);
   }
 }
 
