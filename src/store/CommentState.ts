@@ -1,4 +1,4 @@
-import { observable, computed, action, decorate, autorun, reaction, when, configure, toJS, set, runInAction } from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 import Api from '../util/api';
 
 class CommentState {

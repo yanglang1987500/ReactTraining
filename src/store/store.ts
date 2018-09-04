@@ -2,8 +2,8 @@
 import { configure } from 'mobx';
 import Api from '../util/api';
 import CommentState from './CommentState';
-configure({ enforceActions: true });
 
+configure({enforceActions: true});
 class RootStore {
   axios: any;
   CommentState: any;

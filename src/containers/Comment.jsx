@@ -49,13 +49,12 @@ class Comment extends React.Component {
           真正的好男人并不是不玩游戏，不打DOTA不打WOW的。而是在他玩游戏的时候，只要你一个短信 ，一个电话 或一个QQ ， 他就会为你直接退出游戏。 
           神回复：这，就是传说中俗称的，猪一样的队友。。。
         </section>
-        <List data={data}>
+        <List>
           {
             data.map(i => 
               <List.ListItem
                 data={i}
                 onDelete={() => { CommentState.removeItem(i.id); }}
-                onCheck={(flag) => { CommentState.changeItem(i, flag); }}
               />)
           }
         </List>
