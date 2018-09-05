@@ -4,5 +4,5 @@
 ### 2, yarn install     安装依赖
 ### 3, npm run dll      生成dll
 ### 4, npm run dev      启动服务
-### 5, cd mocks && node app 启动mock服务
+### 5, cd mocks 然后 node app 启动mock服务
 ### 5, open your browser and type in http://localhost:8080/#/comment
